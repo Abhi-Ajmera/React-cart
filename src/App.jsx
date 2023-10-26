@@ -1,20 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Header';
-// import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Cart from './components/Cart';
+import Layout from './components/Layout';
 
 function App() {
   return (
-    <>
-        <Header />
-      {/* <BrowserRouter>
-        <Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path='/'
+          exact
+          element={<Layout />}
+        >
           <Route
             path='/'
-            element={<App />}
+            element={<Home />}
           />
-        </Routes>
-      </BrowserRouter> */}
-    </>
+          <Route
+            path='/cart'
+            element={<Cart />}
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
