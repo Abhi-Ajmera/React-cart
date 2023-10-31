@@ -3,7 +3,7 @@ import Rating from './Rating';
 import { useState } from 'react';
 
 const Filters = () => {
-  const [rate, setRate] = useState(3);
+  const [rate, setRate] = useState(4);
 
   return (
     <div className='filters'>
@@ -48,6 +48,7 @@ const Filters = () => {
         <label style={{ paddingRight: 10 }}>Rating :</label>
         <Rating
           rating={rate}
+          onClick={(i) => setRate(i)}
           style={{ cursor: 'pointer' }}
         />
       </span>
