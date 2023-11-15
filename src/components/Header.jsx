@@ -3,12 +3,13 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { CartState } from '../context/Context';
 import { AiFillDelete } from 'react-icons/ai';
-import './Header.css';
+import './App.css';
 
 const Header = () => {
   const {
     state: { cart },
     dispatch,
+    filterDispatch,
   } = CartState();
 
   return (
@@ -19,13 +20,19 @@ const Header = () => {
     >
       <Container>
         <Navbar.Brand>
-          <Link href='/'>astores</Link>
+          <Link to='/'>astores</Link>
         </Navbar.Brand>
         <Navbar.Text className='search'>
           <FormControl
             style={{ width: 500 }}
             placeholder='search a product'
             className='m-auto'
+            onChange={(e) =>
+              filterDispatch({
+                type: 'FILTER_BY_SEARCH',
+                payload: e.target.value,
+              })
+            }
           />
         </Navbar.Text>
         <Nav>

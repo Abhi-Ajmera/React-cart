@@ -1,19 +1,19 @@
 import { Button, Card } from 'react-bootstrap';
-import './productCard.css';
+import './App.css';
 import Rating from './Rating';
 import { CartState } from '../context/Context';
 
-const ProductCard = ({ key, product }) => {
+const ProductCard = ({ id, product }) => {
   const {
     state: { cart },
     dispatch,
   } = CartState();
-  console.log(cart);
+  // console.log(cart);
 
   return (
     <div
       className='products'
-      key={key}
+      key={id}
     >
       <Card>
         <Card.Img

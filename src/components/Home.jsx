@@ -1,7 +1,7 @@
 import { CartState } from './../context/Context';
 import Filters from './Filters';
 import ProductCard from './ProductCard';
-import './home.css';
+import './App.css';
 
 const Home = () => {
   const {
@@ -17,6 +17,7 @@ const Home = () => {
         {products.map((product) => (
           <ProductCard
             key={product.id}
+            id={product.id}
             product={product}
           />
         ))}
