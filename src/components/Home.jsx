@@ -4,9 +4,8 @@ import ProductCard from './ProductCard';
 import { useSelector } from 'react-redux';
 import './App.css';
 
-
 const Home = () => {
-  const Product = useSelector(val => val.Product)
+  const Product = useSelector((val) => val.Product);
   // console.log(Product);
   // const {
   //   state: { products },
@@ -36,7 +35,6 @@ const Home = () => {
 
   return (
     <div className='home'>
-      <p>Home</p>
       {/* <Filters /> */}
       <div className='productContainer'>
         {Product.map((product) => (

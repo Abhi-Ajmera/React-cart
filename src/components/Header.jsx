@@ -1,16 +1,14 @@
 import { Badge, Button, Container, Dropdown, FormControl, Nav, Navbar } from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { CartState } from '../context/Context';
 import { AiFillDelete } from 'react-icons/ai';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import {REMOVE_FROM_CART} from '../features/cartProductSlice'
 
 const Header = () => {
-  const {
-    state: { cart },
-    dispatch,
-    filterDispatch,
-  } = CartState();
+  const cart = useSelector((e) => e.cart);
+  const dispatch = useDispatch();
 
   return (
     <Navbar
@@ -27,12 +25,12 @@ const Header = () => {
             style={{ width: 500 }}
             placeholder='search a product'
             className='m-auto'
-            onChange={(e) =>
-              filterDispatch({
-                type: 'FILTER_BY_SEARCH',
-                payload: e.target.value,
-              })
-            }
+            // onChange={(e) =>
+            //   filterDispatch({
+            //     type: 'FILTER_BY_SEARCH',
+            //     payload: e.target.value,
+            //   })
+            // }
           />
         </Navbar.Text>
         <Nav>
@@ -65,9 +63,7 @@ const Header = () => {
                       <AiFillDelete
                         fontSize='25'
                         style={{ cursor: 'pointer' }}
-                        onClick={() => {
-                          dispatch({ type: 'REMOVE_FROM_CART', payload: product });
-                        }}
+                        onClick={() => dispatch(REMOVE_FROM_CART(product.id))}
                       />
                     </span>
                   ))}

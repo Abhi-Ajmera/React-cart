@@ -1,20 +1,18 @@
-import { Button, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
-import { CartState } from './../context/Context';
+import { Button, Col, Image, ListGroup, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import './App.css';
 import Rating from './Rating';
 import { AiFillDelete } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import { REMOVE_FROM_CART } from '../features/cartProductSlice';
 
 const Cart = () => {
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
-
+  const cart = useSelector((val) => val.cart);
   const [total, setTotal] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + Number(curr.price * curr.qty), 0));
+    setTotal(cart.reduce((acc, val) => acc + Number(val.price), 0));
   }, [cart]);
 
   return (
@@ -24,7 +22,7 @@ const Cart = () => {
           {cart.map((product) => (
             <ListGroup.Item key={product.id}>
               <Row>
-                <Col md={2}>
+                <Col md={3}>
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -32,7 +30,7 @@ const Cart = () => {
                     rounded
                   />
                 </Col>
-                <Col md={2}>
+                <Col md={3}>
                   <span>{product.name}</span>
                 </Col>
                 <Col md={2}>
@@ -42,29 +40,10 @@ const Cart = () => {
                   <Rating rating={product.ratings} />
                 </Col>
                 <Col md={2}>
-                  <Form.Control
-                    as='select'
-                    value={product.qty}
-                    onChange={(e) =>
-                      dispatch({
-                        type: 'CHANGE_CART_QTY',
-                        payload: {
-                          id: product.id,
-                          qty: e.target.value,
-                        },
-                      })
-                    }
-                  >
-                    {[...Array(product.inStock).keys()].map((x) => (
-                      <option key={x + 1}>{x + 1}</option>
-                    ))}
-                  </Form.Control>
-                </Col>
-                <Col md={2}>
                   <Button
                     type='button'
                     variant='light'
-                    onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: product })}
+                    onClick={() => dispatch(REMOVE_FROM_CART(product.id))}
                   >
                     <AiFillDelete fontSize='20px' />
                   </Button>

@@ -1,15 +1,13 @@
 import { Button, Card } from 'react-bootstrap';
 import './App.css';
 import Rating from './Rating';
-// import { CartState } from '../context/Context';
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../features/cartProductSlice';
 
 const ProductCard = ({ id, product }) => {
-  // const {
-  //   state: { cart },
-  //   dispatch,
-  // } = CartState();
-  // console.log(cart);
+  const cartItem = useSelector((item) => item.cart);
 
+  const Dispatch = useDispatch();
   return (
     <div
       className='products'
@@ -28,25 +26,22 @@ const ProductCard = ({ id, product }) => {
             <div>Delivery Time : {product.fastDelivery ? <span>1 - 2 Day(s)</span> : <span>Around 7 Days</span>}</div>
             <Rating rating={product.ratings} />
           </Card.Subtitle>
-          {/* {cart.some((p) => p.id === product.id) ? (
+
+          {cartItem.some((item) => item.id === product.id) ? (
             <Button
-              onClick={() => {
-                dispatch({ type: 'REMOVE_FROM_CART', payload: product });
-              }}
+              onClick={() => Dispatch(REMOVE_FROM_CART(product.id))}
               variant='danger'
             >
               Remove from cart
             </Button>
           ) : (
             <Button
-              onClick={() => {
-                dispatch({ type: 'ADD_TO_CART', payload: product });
-              }}
+              onClick={() => Dispatch(ADD_TO_CART(product))}
               disabled={!product.inStock}
             >
               {!product.inStock ? 'Out of Stock' : 'Add to cart'}
             </Button>
-          )} */}
+          )}
         </Card.Body>
       </Card>
     </div>
