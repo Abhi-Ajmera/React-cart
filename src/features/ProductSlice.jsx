@@ -8,7 +8,7 @@ const initialState = [...Array(20)].map(() => ({
   name: faker.commerce.productName(),
   price: faker.commerce.price(),
   image: faker.image.url(),
-  inStock: faker.helpers.arrayElement([0, 3, 5, 6, 7]),
+  inStock: faker.helpers.arrayElement([0, 7, 3, 6, 5]),
   fastDelivery: faker.datatype.boolean(),
   ratings: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
 }));
@@ -16,7 +16,13 @@ const initialState = [...Array(20)].map(() => ({
 export const ProductSlice = createSlice({
   name: 'Product',
   initialState,
-  reducers: {},
+  reducers: {
+    SORT_BY_PRICE: (state, action) => {
+      state.sort((a, b) => (action.payload === 'lowToHigh' ? a.price - b.price : b.price - a.price));
+    },
+    CLEAR_PRICE: () => initialState,
+  },
 });
 
+export const { SORT_BY_PRICE, CLEAR_PRICE } = ProductSlice.actions;
 export default ProductSlice.reducer;
