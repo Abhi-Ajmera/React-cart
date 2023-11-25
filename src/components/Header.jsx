@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AiFillDelete } from 'react-icons/ai';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {REMOVE_FROM_CART} from '../features/cartProductSlice'
+import { REMOVE_FROM_CART } from '../features/cartProductSlice';
 
 const Header = () => {
   const cart = useSelector((e) => e.cart);
@@ -25,12 +25,12 @@ const Header = () => {
             style={{ width: 500 }}
             placeholder='search a product'
             className='m-auto'
-            // onChange={(e) =>
-            //   filterDispatch({
-            //     type: 'FILTER_BY_SEARCH',
-            //     payload: e.target.value,
-            //   })
-            // }
+            onChange={(e) =>
+              filterDispatch({
+                type: 'FILTER_BY_SEARCH',
+                payload: e.target.value,
+              })
+            }
           />
         </Navbar.Text>
         <Nav>

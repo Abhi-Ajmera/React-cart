@@ -1,5 +1,5 @@
 // import { CartState } from './../context/Context';
-// import Filters from './Filters';
+import Filters from './Filters';
 import ProductCard from './ProductCard';
 import { useSelector } from 'react-redux';
 import './App.css';
@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <div className='home'>
-      {/* <Filters /> */}
+      <Filters />
       <div className='productContainer'>
         {Product.map((product) => (
           <ProductCard

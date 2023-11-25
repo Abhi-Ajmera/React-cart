@@ -18,3 +18,8 @@ export const filterReducer = createSlice({
     CLEAR_FILTER: () => {},
   },
 });
+
+export const { SORT_BY_PRICE, FILTER_BY_STOCK, FILTER_BY_DELIVERY, FILTER_BY_RATING, FILTER_BY_SEARCH, CLEAR_FILTER } =
+  filterReducer.actions;
+
+export default filterReducer.reducer;
