@@ -4,6 +4,13 @@ import { useSelector } from 'react-redux';
 import './App.css';
 
 const Home = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const Product = useSelector((val) => val.Product);
   const { byStock, byFastDelivery, byRating, searchQuery } = useSelector((val) => val.filter);
 
@@ -38,6 +45,12 @@ const Home = () => {
           />
         ))}
       </div>
+      <button
+        className='backToTop'
+        onClick={scrollToTop}
+      >
+        ^
+      </button>
     </div>
   );
 };

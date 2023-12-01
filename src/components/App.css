@@ -100,3 +100,32 @@
     width: 100%;
   }
 }
+.backToTop {
+  position: fixed;
+  z-index: 20;
+  bottom: 4vw;
+  right: 7vw;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #343a40;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    position: sticky;
+  }
+  .filters {
+    display: inline-block;
+    width: 30%;
+  }
+  .productContainer {
+    display: inline-block;
+    display: 60%;
+  }
+}
